@@ -1,0 +1,155 @@
+---
+title: "💻 <i>R</i> Workshop 💻"
+subtitle: "Data Science Workflow"
+author: "Luca Valnegri"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "https://datamaps.uk/assets/WeR/xari.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+background-size: 570px
+background-position: -10% -40%
+<div class="wer-header"> <img class="logo" src="https://datamaps.uk/assets/WeR/logo_white.png"/> </div>
+<div class="wer-footer"> <span> &copy;2019 WeR meetup <br> https://github.com/WeR-stats/ </span> </div>
+
+---
+background-image: url(wheel01.png)
+
+# Problem Formulation
+
+.pull-right-dswf[
+
+- 
+
+]
+
+---
+background-image: url(wheel02.png)
+
+# Data Preparation
+
+.pull-right-dswf[
+
+- Data Planning
+
+- Data Collection
+
+- Data Sourcing
+
+- Data Storage Design
+
+]
+
+---
+background-image: url(wheel03.png)
+
+# Data Processing
+
+.pull-right-dswf[
+
+- Data Manipulation
+  
+- Data Wrangling
+  
+- Data Imputation
+  
+- Anomaly Detection
+  
+- Feature Engineering
+
+]
+
+---
+background-image: url(wheel04.png)
+
+# Data Exploration
+
+.pull-right-dswf[
+
+- Data Summaries
+
+- Data Display
+
+- Data Visualization
+
+]
+
+---
+background-image: url(wheel05.png)
+
+# Data Understanding
+
+.pull-right-dswf[
+
+- Data Modelling
+
+- Data Mining
+
+- Forecasting
+  
+- GeoStatistics
+  
+- Network Analysis
+  
+- ...
+
+]
+
+---
+background-image: url(wheel06.png)
+
+# Data Presentation
+
+.pull-right-dswf[
+
+- Document
+
+- Flat File
+  
+- Spreadsheet
+  
+- Reporting System
+  
+- Dashboard
+  
+- Web Application
+
+]
+
+---
+background-image: url(wheel07.png)
+
+# Data Integration
+
+.pull-right-dswf[
+
+- Containerization
+  
+]
+
+---
+background-image: url(wheel08.png)
+
+# Data Monitoring
+
+.pull-right-dswf[
+
+- 
+
+]
+
+
+---
+# Thank You!
+
+ - [`r icon::fa("twitter")` @datamaps](https://twitter.com/datamaps)
+
+ - [`r icon::fa("github")` lvalnegri](https://github.com/lvalnegri)
+ 
+ - [`r icon::fa("linkedin")` Luca Valnegri](https://www.linkedin.com/in/lucavalnegri)
+
