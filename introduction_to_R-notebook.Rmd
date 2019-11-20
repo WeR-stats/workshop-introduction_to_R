@@ -1,0 +1,497 @@
+---
+title: 'Introduction To *R*'
+author: 'Luca Valnegri'
+date: '`r format(Sys.Date(), "%d %B %Y")`'
+output: 
+    rmdformats::readthedown:
+        theme: lumen
+        highlight: tango
+#        code_fold: hide
+        css: 'https://datamaps.uk/assets/WeR/nb.css'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# *R* Management
+
+## Packages
+
+
+## Help
+
+
+
+## Environment
+
+
+
+# *R* as a Calculator
+
+
+## Arithmetics
+
+ - Addition
+```{r}
+1+2
+```
+
+ - Subtraction
+```{r}
+5-3
+```
+
+ - Division
+
+```{r}
+22/3
+```
+
+ - Modulo (returns the remainder of the division)
+```{r}
+22%%3
+```
+
+ - Integer Division (discards the fractional part)
+```{r}
+22%/%3
+```
+
+ - The order of operations matters, and can be changed with parenthesis:
+```{r}
+100 * 2 + 50 / 2
+100 * (2 + 50) / 2
+```
+
+## Mathematics
+
+
+
+## Roundings
+
+ - rounds the value of its argument to the specified number of decimal places (default is `0`)
+```{r}
+x <- 10/3
+round(x, digits = 4)
+```
+
+ - returns the largest integers *not greater* than its argument
+```{r}
+floor(x)
+```
+
+ - returns the largest integers *not less* than its argument
+```{r}
+ceiling(x)
+```
+
+ - returns the integer formed by truncating its argument *toward 0*
+```{r}
+trunc(x)
+trunc(-x)
+```
+
+ - rounds the value of its argument to the specified number of *significant* digits
+```{r}
+signif(x, digits = 6)
+```
+
+
+
+## Statistics
+
+
+
+## Comparison
+
+
+## Logical
+
+
+# Variables
+
+Assignment of a value to a variable can be done in two ways:
+
+- Direct
+```{r}
+x <- 3
+x
+```
+
+ - Programmatically
+```{r}
+assign('x', 3) 
+x
+```
+
+The input for the assignment can be another object, or even an entire expression:
+```{r}
+assign('x1', 3) 
+assign('x2', x1 * 2)
+x1
+x2
+```
+
+Notice that assigning a value to an existing variable overwrites immediately the old value, *without* warning:
+```{r}
+x <- 32
+x
+x <- 145
+x
+```
+
+# Data Types
+
+## Logical
+
+Any set of characters enclosed in single or double quotes:
+
+
+
+## Character (string)
+
+
+## Numeric
+
+
+
+# Data Structures
+
+## Vector
+
+
+### Operations and Comparisons
+The operators are the same as above in the *scalar* case, but are applied simultaneously elements by element:
+```{r}
+
+```
+
+### Indexing
+
+
+### Subsetting
+
+
+### Vectorization
+
+
+### Recycling
+
+
+## Matrix
+
+A *matrix* is simply a vector with a *dimension* attribute:
+```{r}
+x <- 1:20
+class(x)
+x
+
+dim(x) <- c(4, 5)
+class(x)
+x
+```
+
+But we can also use the `matrix` command:
+```{r}
+x <- matrix(1:20, nrow = 4)
+x
+```
+Some benefits in using the `matrix` command, instead of simply adding (or changing) the dimension to the building vector, are the following:
+
+  - the elements can be also added *by row* instead that *by column*:
+    ```{r}
+    x <- matrix(1:20, nrow = 4, byrow = TRUE)
+    x
+    ```
+  - we can *recycle*, something impossible when changing the dimension that needs to have the exact number of total elements:
+    ```{r}
+    x <- matrix(1:20, nrow = 3, ncol = 8, byrow = TRUE)
+    x
+    ```
+  
+
+
+## Dataframe
+    
+### Indexing
+
+
+### Subsetting
+
+
+### Binding
+
+
+### Merging
+
+
+
+## List
+
+### Indexing
+
+
+### Subsetting
+
+
+### Combining and Appending
+
+
+
+# Factors
+
+
+# Data Input / Output
+
+## Preloaded datasets
+
+```{r}
+data()
+```
+
+Most *modern* datasets comes with external packages, and you need to install those packages beforehand:
+```{r}
+# install.packages(c('dplyr', 'gapminder', 'ggplot2', 'nycflights13'))
+ggplot2::diamonds
+gapminder::gapminder
+nycflights13::flights
+dplyr::storms
+```
+
+
+## Text Files: CSV, TSV, FWF
+
+The most general function to use for reading in data using flat text file is `read.table`:
+
+```{r}
+hdi <- read.table('./data/HDI.csv', header = TRUE, sep = ',')
+hdi
+```
+
+But depending on the file structure, some other derived simpler function can be used:
+
+```{r}
+hdi <- read.csv('./data/HDI.csv') 
+hdi
+```
+
+
+### *R* Base
+
+
+File can also be downloaded directly from the Internet, and saved somewhere locally to be processed later:
+```{r}
+download.file('https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/elections/electoralregistration/datasets/electoralstatisticsforuk/2017unformatted/elec5dt2unformattedelectoralstatisticsuk2017.xls', './data/uk_elections.xls')
+```
+
+Otherwise, downloaded files can be assigned to a *temporary* file:
+```{r}
+x <- tempfile()
+download.file('https://gender-pay-gap.service.gov.uk/Viewing/download-data?year=2017', x)
+paygap <- read.csv(x)
+unlink(x)
+head(paygap)
+```
+
+
+### *readr*
+
+```{r}
+# install.packages('readr')
+library(readr)
+ames <- read_csv('./data/ames.csv')
+head(ames)
+```
+
+
+### *data.table*
+```{r}
+# install.packages('data.table')
+library(data.table)
+x <- data.frame(
+    id = 138:142,
+    url = c('28Nov2018-04Dec2018', '05Dec2018-11Dec2018', '12Dec2018-18Dec2018', '19Dec2018-25Dec2018', '26Dec2018-01Jan2019')
+)
+cycle_data <- rbindlist(
+    lapply(
+        1:nrow(x), 
+        function(n) 
+            fread( paste0('https://cycling.data.tfl.gov.uk/usage-stats/', x[n, 1], 'JourneyDataExtract', x[n, 2], '.csv') )
+    )
+)
+cycle_data
+```
+
+
+## Binary Files
+
+Sometimes, the object we want to save is not a dataframe, or it's more than one dataframe. If that's the case, a few *R* base functions can help us:
+
+ - to read or write the entire current workspace in files called `.RData` that is (usually) the first file loaded when starting R from that folder:
+```{r}
+# save.image()
+```
+
+ - to read or write any object use:
+```{r}
+# saveRDS(x, './data/test')
+# readRDS(x, './data/test')
+```
+
+Notice the non-consistent behaviour of some *R* commands. When you use `save` you should use `load` for the opposite operation. Similarly, when you use `write` you should use `read` for the opposite operation. Also, in the previous command there is a dot to separate the verb form the noun, here nothing. Instead, there is a change in case that you don't find previously.
+
+ - to read or write multiple objects:
+```{r}
+# save(x1, x2, x3, x4, file = './data/output.rda')
+# rm(x1, x2, x3, x4)
+# x1
+# load('./data/output.rda')
+# x1
+```
+
+### *R* Base
+```{r}
+```
+
+
+### *fst*
+```{r}
+# install.packages('fst')
+library(fst)
+write_fst(cycle_data, './data/cycle_data.fst')
+```
+
+
+## Other formats
+
+### *readxl* for *Excel*
+
+It's not uncommon to have our data saved in an Excel spreadsheet. In that case we need the support of an external package that provide the functionalities to (at least) read that format.
+
+```{r}
+# install.packages('readxl')
+library(readxl)
+x <- tempfile()
+download.file('https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/elections/electoralregistration/datasets/electoralstatisticsforuk/2017unformatted/elec5dt2unformattedelectoralstatisticsuk2017.xls', x)
+excel_sheets(x)
+elections <- read_xls(x, sheet = 5)
+head(elections)
+unlink(x)
+```
+
+Remember that there are many different Excel formats, the above *xls* is the old format being phased out in for the new open *xlsx* format, that require a different function: 
+
+
+### *jsonlite* for *JSON*
+
+Often nowadays, *open data* are available as files in [JSON]() format, being a direct result of a query on the website underlying database. 
+
+As a practical example, open the [UK Petition](https://petition.parliament.uk/) website, where any UK resident can post a request for people to sign and the Parliament eventually to get involved, and find the *id* of a petition you're interested in
+```{r}
+# install.packages('jsonlite')
+library(jsonlite)
+p_id <- '205106'
+pet <- fromJSON(paste0('https://petition.parliament.uk/petitions/', p_id, '.json'))
+pet
+```
+
+As you can see, the file has been saved as a list of objects, and to actually get only the included dataset(s) you have to dig a bit into its structure:
+```{r}
+pet <- pet$data$attributes$signatures_by_constituency
+head(pet)
+```
+
+
+### *xml2* for *XML*
+
+
+```{r}
+# install.packages('XML')
+library(XML)
+```
+
+
+
+# Summaries
+
+
+
+
+# Graphics
+
+## Univariate
+
+### Barplot
+
+```{r}
+table(paygap$EmployerSize)
+barplot(table(paygap$EmployerSize))
+```
+
+We can cast the column to factor and order its values as desired
+
+```{r}
+cls <- c('Less than 250', '250 to 499', '500 to 999', '1,000 to 4,999', '5,000 to 19,999', '20,000 or more')
+paygap$EmployerSize <- factor(paygap$EmployerSize, levels = cls, ordered = TRUE)
+barplot(table(paygap$EmployerSize))
+```
+
+
+### BoxPlot
+
+```{r}
+table(elections$`Constituency type`)
+y <- elections[elections$`Constituency type` != '.', ]
+sum(y$`Total electors 2016`) == elections[elections$`Parliamentary constituency` == 'United Kingdom', ]$`Total electors 2016`
+boxplot(y[y$`Constituency type` == 'B',]$`Total electors 2016`, y[y$`Constituency type` == 'C',]$`Total electors 2016`)
+```
+
+```{r}
+boxplot(
+    `Total electors 2016`~`Constituency type`, 
+    data = y,
+    names = c('B', 'C'), 
+    main = 'UK Electors by Constituency Type', 
+    xlab = 'Type',
+    ylab = 'Electors 2016'
+)
+```
+
+
+### Histogram
+
+```{r}
+hist(pet$signature_count)
+```
+
+### Density
+
+```{r}
+plot(density(table(cycle_data$Duration)))
+```
+
+```{r}
+table(cycle_data$Duration)
+```
+
+```{r}
+plot(density(table(cycle_data[cycle_data$Duration < 6000,]$Duration/60)))
+```
+
+
+## Bivariate
+
+### Scatterplot
+
+```{r}
+plot(paygap$FemaleBonusPercent ~ paygap$DiffMedianHourlyPercent)
+```
+
+
+```{r}
+table()
+```
+
+

@@ -24,7 +24,7 @@ layout: true
 background-size: 570px
 background-position: -10% -40%
 &lt;div class="wer-header"&gt; &lt;img class="logo" src="https://datamaps.uk/assets/WeR/logo_white.png"/&gt; &lt;/div&gt;
-&lt;div class="wer-footer"&gt; &lt;span&gt; &amp;copy;2019 WeR meetup &lt;br&gt; https://github.com/WeR-stats/ &lt;/span&gt; &lt;/div&gt;
+&lt;div class="wer-footer"&gt; &lt;span&gt; &amp;copy;2019 WeR meetup &lt;br&gt; &lt;a href = "https://github.com/WeR-stats/workshop-introduction_to_R"&gt; GitHub Repository &lt;/a&gt; &lt;/span&gt; &lt;/div&gt;
 
 ---
 background-image: url(wheel01.png)
@@ -33,9 +33,19 @@ background-image: url(wheel01.png)
 
 .pull-right-dswf[
 
-- 
+- Understand the business question and its requirements
+
+- Identify project objectives, scope, and measures for success
+
+- Set deadlines and milestones
 
 ]
+
+???
+
+- The process stays the same regardless of the type of the problem that is trying to be solved
+  
+- Usually, the components required in each step changes depending on the problem
 
 ---
 background-image: url(wheel02.png)
@@ -53,6 +63,15 @@ background-image: url(wheel02.png)
 - Data Storage Design
 
 ]
+
+???
+
+- Nowadays, most companies have a tremendous amount of data, so it's essential to decide what kind of data is necessary for the project
+
+- Often, internal data are coupled with data from external sources
+
+- Last you must determine where and how data are going to be stored, how to gain access to it. 
+
 
 ---
 background-image: url(wheel03.png)
@@ -73,6 +92,13 @@ background-image: url(wheel03.png)
 
 ]
 
+???
+
+
+- Let data get to the point at which it's ready for exploration and modeling. 
+
+- This step is the responsibility of both the data engineer and the data scientist. The data engineer does most of the processing beforehand by making the data accessible, clean, and ready for the data scientist to work with. However, most data scientists still need to do some amount of data processing afterwards, usually involving missing values, outliers, and feature engineering.
+
 ---
 background-image: url(wheel04.png)
 
@@ -87,6 +113,12 @@ background-image: url(wheel04.png)
 - Data Visualization
 
 ]
+
+???
+
+-
+- Allows for the investigation of what is happening in the data that is not obvious at a glance: uncover hidden patterns within the data, build questions about the data, reject/accept the original hypotheses, inform about trend or seasonality.
+ This is the phase where you gain insights into what needs to be done, and try to identify which data elements, or features, drive the behaviour you want to model.
 
 ---
 background-image: url(wheel05.png)
@@ -109,6 +141,33 @@ background-image: url(wheel05.png)
 
 ]
 
+???
+
+- This phase usually consist first ofinhoosing one among different techniques, and typically multiple cycle iterations are needed to unpickhe one to actually use
+
+. - Once the "best" technique has been selected, another set of cycles is then needed to evaluate the results and define the correct set of parameters that allows to achieve (or approximate) the desired outcome.
+
+- A common misconception is thinking that this is the only step associated with "data science". The reality is instead data scientists spend on it less than 10% of their time, while 50-80% of it is actually used to prepare data.
+
+- Difference between Explanation (statistical modeling) and Prediction (data mining / machine learning)
+
+- Modeling steps for Supervised Learning: 
+
+- 1] Split data into Training and Testing set. The idea is to hold a subset of the data back and use it later to test the model's effectiveness.)
+
+- 2] Generate Model/Algorithm
+
+- 3] Test Model
+
+- 4] Evaluate Model: compare the predictions against the actual values to see how well the model performed 
+     ==&gt; Confusion Matrix: accuracy, precision, recall
+     ==&gt; Mean squared error (MSE)
+
+- Beware of Overfitting! that the model works well only with the data used to train it. This happens when too many data elements are used in model training. A sign of overtraining is when you get a high level of prediction accuracy, such as anything close to 100%. 
+
+- Another common practice to improve model performance, and minimize the chancec to overfit, is cross-validation. This method splits the data into subsets of the full dataset to ensure you're not overfitting a model to one training set. 
+
+
 ---
 background-image: url(wheel06.png)
 
@@ -118,7 +177,7 @@ background-image: url(wheel06.png)
 
 - Document
 
-- Flat File
+- Flat File (CSV, TSV, FWF)
   
 - Spreadsheet
   
@@ -129,6 +188,9 @@ background-image: url(wheel06.png)
 - Web Application
 
 ]
+
+???
+
 
 ---
 background-image: url(wheel07.png)
@@ -141,6 +203,15 @@ background-image: url(wheel07.png)
   
 ]
 
+???
+
+- This is the implementation step that's often left to the developers and devOps who "owns" the product(s).
+
+- It's more and more common though that data scientists are involved, see the "dataOps".
+
+
+
+
 ---
 background-image: url(wheel08.png)
 
@@ -151,6 +222,8 @@ background-image: url(wheel08.png)
 - 
 
 ]
+
+???
 
 
 ---

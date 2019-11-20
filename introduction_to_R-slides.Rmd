@@ -1,0 +1,1063 @@
+---
+title: "💻 <i>R</i> Workshop 💻"
+subtitle: "Introduction To *R*"
+author: "Luca Valnegri"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "https://datamaps.uk/assets/WeR/xari.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+layout: true
+<div class="wer-header"> <img class="logo" src="https://datamaps.uk/assets/WeR/logo_white.png"/> </div>
+<div class="wer-footer"> <span> &copy;2019 WeR meetup <br> <a href = "https://github.com/WeR-stats/workshop-introduction_to_R"> GitHub Repository </a> </span> </div>
+
+
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+```
+
+---
+# Contents
+
+- Motivations
+
+--
+
+- 
+
+--
+
+- Data Types
+
+--
+
+- Data Structures
+
+--
+
+- *R* as a Calculator
+
+---
+background-image: url(https://www.r-project.org/logo/Rlogo.png)
+background-size: 12%
+background-position: 98% 3%
+
+# Why *R*?
+
+<br>
+- *R* is a free *open-source* software released under the [Free Software Foundation](http://www.gnu.org/licenses/gpl-3.0.html)’s [General Public License](http://www.gnu.org/licenses/gpl-3.0.html). 
+
+--
+
+- *R* is a (statistical) computer language which supports [*matrix arithmetic*](https://en.wikipedia.org/wiki/Linear_algebra)
+
+--
+
+- *R* is a **`REPL`** (**R**ead-**E**val-**P**rint-**L**oop) run-time environment
+
+--
+
+- *R* is *extensible*
+
+---
+background-image: url(https://www.r-project.org/logo/Rlogo.png)
+background-size: 12%
+background-position: 98% 3%
+
+# Why *R*?
+
+<br>
+- *R* can easily *integrate* with other statistical packages, programming languages, database management systems, business intelligence platforms
+
+--
+
+- *R* makes it easy to adopt a *reproducible* approach
+
+--
+
+- *R* has a great community
+
+
+---
+background-image: url(https://www.r-project.org/logo/Rlogo.png)
+background-size: 12%
+background-position: 98% 3%
+
+# What can you do with *R*?
+
+<br>
+R is a powerful tools for:
+
+ - Statistics Modeling and Machine Learning
+
+--
+
+ - Static and Interactive Data Visualization
+
+--
+
+ - Data Driven Maps
+
+--
+
+ - Dynamic Documents and reporting
+
+--
+
+ - Web Applications
+
+--
+
+ - Websites, Blogs and Books
+
+---
+background-image: url(https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Gray.png)
+background-size: 20%
+background-position: 95% 5%
+
+# Why RStudio?
+
+<br>
+
+ - It's an *IDE*, so it is designed to make it easy to write scripts, with code completion and syntax highlighting
+
+--
+
+ - It's the same exact interface on all the OS it can run
+ 
+--
+
+ - It is an excellent plot device
+
+--
+
+ - It is convenient for managing packages, view and interact with any objects stored in the environment or system files
+
+---
+background-image: url(https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Gray.png)
+background-size: 20%
+background-position: 95% 5%
+
+# Why RStudio?
+
+<br>
+
+ - easily integrate with version control software like *git* and *GitHub*
+
+--
+
+ - provide additional tools like terminal, database connections, background jobs, addins
+
+--
+
+ - some *R* more advanced components, like *Shiny* and *RMarkdown*, work only with *RStudio*
+
+--
+
+ - last but not least, like *R*, it is free and open-source (but there are commercial versions)
+
+---
+background-image: url(https://git-scm.com/images/logo@2x.png)
+background-size: 14%
+background-position: 98% 2%
+
+# Why Version Control?
+
+ - it's a Single Source of Truth
+
+--
+
+ - keep track of what you have been doing retrospectively, providing functionalities for restoring previous versions
+
+--
+
+ - force you to describe what you've done
+
+--
+
+ - much easier collaboration with others
+
+--
+
+ - a proof of hard work to your advisor
+
+--
+
+ - *why GitHub?* community, sharing, sort of backup
+
+
+---
+# *R* Quick Facts
+
+ - Commands don't need to be terminated with any special character
+ 
+--
+
+ - R is case-sensitive 
+
+--
+
+ - Multiple spaces and tabs don't matter
+
+--
+
+ - Comments are only one-liner and are identified by the hash sign `#`
+
+--
+
+ - When referring to paths, backslashes `\` are not admitted
+   In Windows, it's possible to use a double backslash `\\` instead
+
+---
+# *R* Quick Facts
+
+ - Typing the name of any object will display a printed representation
+
+--
+
+ - Alternatively, the `print()` function can be used to display the entire object
+
+--
+
+ - Element numbers are displayed in square brackets on the left of the output
+ 
+--
+
+ - Function calls require always parentheses, even if there are no arguments
+
+--
+
+ - Typing a function’s name will display its definition and arguments list (often not very enlightening)
+
+
+---
+# Help
+
+ - `help(topic)` or `?topic` for a specific help on an existing object or function 
+
+--
+
+ - `vignette(topic)` for an existing detailed help, or even tutorial, on a specific package
+ 
+--
+
+ - `??topic` search the help system for a generic topic
+
+--
+
+ - `help.start()` open a browser pointing to a variety of (locally stored) information about R
+
+
+---
+# Help Online
+
+ - [Google]() add *r* or *rstats* to your search
+
+ - [Stack Overflow]() add “[r]” to your search
+
+ - [rseek.org]() (Google, but focused on R)
+
+ - [Quick R]() - statmethods.net
+
+
+---
+# Packages
+
+ - An *R* package is an extension of the *R* language that consists of a related set of functions, documentation, and data files, that are bundled together to solve specific questions or more generic problems
+
+--
+
+ - *R* comes with standard packages, which contain the basic functions and data sets as well as standard statistical and graphical functions that allow R to work
+
+
+---
+# Packages
+
+Most packages are available through the [Comprehensive R Archive Network](http://cran.r-project.org/src/contrib/PACKAGES.html) or *CRAN*. 
+
+--
+
+Other repositories for *R* packages are:
+ - [Bioconductor](https://www.bioconductor.org/)
+ - [Github](https://github.com/)
+ - [R-Forge](http://r-forge.r-project.org/)
+
+--
+
+Each of the above sources require its own way for installing packages
+
+
+---
+# Packages
+
+ - you need to *install* any package before being able to use it. It is a one-off operation
+
+--
+
+ - `install.packages(pkgname)` to install packages from *CRAN* 
+
+--
+
+ - `devtools::install_github('author/repo')` to install packages from *Github* 
+
+
+---
+# Packages
+
+ - `library(pkgname)` load the package *pkgname* in the system. You need to do this every time you want to use the package
+
+--
+
+ - `require(pkgname)` same as *library* but made to be used inside functions, as it outputs a warning and continues if the package is not found, while *library* throws an error
+
+--
+
+ - `pkgname::funname` call the function *funname* contained in the package *pkgname* without loading the entire package in the system
+
+---
+# Packages
+
+ - `library(pkgname, lib.loc = 'path')` to load the package from a particular location
+
+--
+
+ - `library()` lists all the packages installed in the system
+
+--
+
+ - `library(help = pkgname)` shows a brief description of the package *pkgname* 
+
+---
+# Tidyverse
+
+ - It's a collection of *R* packages built around the basic concept of *tidy data*
+ 
+--
+
+   - data in a table should have one observation per row, one variable per column, and only one value per cell.
+
+--
+
+ - Provides an efficient, fast, and well-documented workflow for general data modeling, wrangling, and visualization tasks
+
+--
+
+ - Introduces a set of useful data analysis packages to help streamline your work in *R*
+ 
+---
+# Tidyverse
+
+In particular, the Tidyverse was designed to address the top three common issues that arise when dealing with data analysis in R functions:
+
+ - Results obtained from a base *R* function often depend on the type of data being used
+ 
+--
+
+ - When *R* expressions are used in a non-standard way, they can confuse beginners
+ 
+--
+ 
+ - Hidden arguments often have various default operations that beginners are unaware of
+ 
+---
+# Environment
+
+ - `search()` returns the list of all the attached packages, in decreasing order of their loading time, starting from `.GlobalEnv` and ending with `base`, first to be loaded and always required
+ 
+--
+
+ - `searchpaths()` returns the paths of the attached packages, in the same order as `search`
+
+--
+
+ - `ls()` or `objects()` list the names of all the objects open in the current environment
+
+--
+
+ - `ls(pos = n)` or `objects(pos = n)`  list of the names of all the objects
+
+---
+# Environment
+
+ - `ls.str()` for a detailed list of the objects 
+
+--
+
+ - `rm(x)` function to remove the object called `x`
+
+--
+
+ - `rm(list = ls())` to remove all the objects from the current environment
+
+
+---
+# Environment
+
+ - When starting, *R* looks for a file called `.RData` in the current directory. If it doesn’t exist it creates it.
+
+--
+
+ - The `.RData` file stores the content of the current workspace
+
+--
+
+ - Any directory can then become the reference of a different *project*
+
+--
+
+ - `save.image()` to save your current data whenever and wherever you want
+
+---
+# Environment
+
+ - `getwd()` retrieve the current *working directory*
+
+--
+
+ - `setwd(x)` to change the working directory
+
+
+---
+# Objects
+
+ - Objects can be assigned values using either an equal sign `=` or the special `<-` operator
+ 
+--
+
+ - In automation, it's more convenient to use the function `assign('varname', value)`
+ 
+--
+ 
+ - In any assignment statements, *R* actually copy the object, it is not passed by reference.
+ 
+--
+ 
+ - If you don’t assign the result of an expression to an object, *R* will display the results, but also store it in the `.Last.value` object
+ 
+--
+
+ - The `str()` function shows the structure of an object
+ 
+---
+# Data Types
+
+ - *character* any set of characters enclosed in single or double quotes
+
+--
+
+ - *logical* `TRUE` or `FALSE`
+
+--
+
+ - *numeric* any number, that can also be *integer* or *double*
+
+--
+
+ - *Date* standard form is 'YYYY-MM-DD'
+
+--
+
+ - *POSIXct* (*c*alendar *t*ime) stores the number of seconds since the origin
+ - *POSIXlt* (*l*ocal *t*ime) keeps the date as a list of time attributes (such as "hour" and "mon")
+
+---
+# Data Types
+
+ - `is.*(x)` to test if the object `x` is of the specified type
+
+--
+
+ - `as.*(x)` convert, if possible, `x` into the specified type
+ 
+--
+
+ - `class(x)`, `mode(x)`, `typeof(x)` all describe the data type of the object `x`
+
+---
+# Data Structures: Vector
+
+ - Set of elements of the same type. You can have numeric vectors, character vectors, logical vectors. But you can't mix and match. 
+
+--
+
+ - Use the function `c()` to create small vectors by hand
+
+--
+
+ - Square brackets `[ ]` are used for indexing and subsetting
+
+---
+# Data Structures: Vectors
+ - Most operators are *vectorized*, ie. are applied to all elements in parallel
+
+--
+
+ - If an operation is applied to vectors of different lengths, the elements in the shorter vector(s) are *recycled* until the lengths of all involved objects are the same
+
+
+---
+# Data Structures: Sequences (Vectors)
+
+ - `start:end`
+ 
+ - `seq(start, end, by)` where `by` means the difference between each component
+ 
+ - `seq(start, end, length)` where `length` means the number of component
+
+ - `rep(x, times)` repeat `x` `times` times
+
+ - `rep(x, each)` repeat each component `each` times
+
+ - `rep(x, len)` recycle `x` until reach a sequence of `len` components
+
+---
+# Finding Elements
+
+ - `which(condition)`
+
+ - `which.min(condition)`
+
+ - `which.max(condition)`
+
+The above functions all returns the index or indices of the elements satisfying the request
+
+---
+# Ordering
+
+ - `sort(x, )`
+
+
+---
+# Duplicated Values
+
+ `duplicated(x)`
+
+ - Determines which elements are duplicates of elements with smaller subscripts
+ - Returns a logical vector indicating which elements (rows) are duplicates.
+ - `x <- x[!duplicated(x)]` to delete duplications
+
+ - insert `fromLast` to 
+ - insert `nmax = n` to return TRUE only for duplication at least as `n`
+
+---
+# Data Structures: Matrix
+
+ - a vector with a non-null dimension attribute `dim(x) <- c(nrow, ncol)`
+
+ - 
+
+ - matrix operations are also vectorized
+
+---
+# Data Structures: Dataframe
+
+ - A set of vectors of the same length. The most useful way to represent tabular data in *R*
+
+--
+
+ - The columns (variables) of a dataframe can be of different types, but they all must contain the same number of elements
+
+--
+
+ - The top line of the table, called the header, contains the column names
+ 
+--
+
+ - To retrieve data in a cell, we would enter its row and column coordinates in the single square bracket "[]" operator. The two coordinates are separated by a comma. In other words, the coordinates begins with row position, then followed by a comma, and ends with the column position.
+ 
+--
+
+- The function data.frame() creates data frames
+
+---
+# Data Structures: List
+
+ - a *list* provides a very general way to hold a collection of, possibly named, arbitrary R objects. 
+
+--
+
+ - to extract an element corresponding to an item in a list we use the double bracket notation `[[ ]]`
+
+--
+
+ - if the items of the list are named, it's possible to use the more common `$` notation
+
+---
+# Factors
+
+ - a convenient representation for columns of a dataframe that represents *categorical* variable, with a number of finite labels with no direct numrical meaning
+
+--
+
+ - the set of unique different values that a factor can assume are called *levels*
+ 
+--
+
+ - the levels can be ordered or not
+ 
+--
+
+ - they are practical in models as they can be *expanded* automatically
+
+
+---
+# *R* as a Calculator
+
+*R* can be used at its basics as a normal calculator. 
+
+It can easily performs the following operations:
+
+ - arithmetic
+ - comparison
+ - logical
+ - rounding
+ - mathematical
+ - statistical
+ - date and time 
+
+---
+# *R* as a Calculator: Arithmetics
+
+ - `x + y` addition
+ 
+ - `x - y` subtraction
+ 
+ - `x * y` multiplication
+ 
+ - `x / y` division
+ 
+ - `x %% y` module
+ 
+ - `x %/% y` integer division
+
+---
+# *R* as a Calculator: Comparisons
+
+ - `x == y` *x* equal to *y*
+ 
+ - `x != y` *x* not equal to *y*
+ 
+ - `x < y`  *x* less than *y*
+ 
+ - `x <= y` *x* less thanor equal to *y*
+ 
+ - `x > y` *x* greater than *y*
+ 
+ - `x >= y` *x* greater than or equal to *y*
+
+
+---
+# *R* as a Calculator: Logicals
+
+ - `!x` NOT returns the opposite value of *x*
+ 
+--
+ 
+ - `x | y` OR returns true if *any* of its arguments are true, otherwise false
+  
+--
+ 
+ - `x & y` AND returns true if *all* of its arguments are true, otherwise false
+
+--
+ 
+There are also the *scalar* versions of `AND` and `OR`:
+
+ - `x || y` OR 
+
+ - `x && y` AND 
+
+
+---
+# *R* as a Calculator: Roundings
+
+ - `round(x, digits = 0)` rounds the value `x` to the specified number of decimal places
+ 
+--
+ 
+ - `floor(x)` returns the largest integer not greater than `x`
+ 
+--
+ 
+ - `ceiling(x)` returns the smallest integer not less than `x`
+ 
+--
+
+ - `trunc(x)` returns the integer formed by truncating `x` toward 0 <br>
+   Notice that `trunc(x) = floor(x > 0) + ceiling(x < 0)`
+ 
+--
+   
+ - `signif(x, digits = 6)` rounds `x` to the specified number of significant digits
+
+
+---
+# *R* as a Calculator: Mathematicals
+
+ - `sgn(x)` sign 
+ 
+ - `abs(x)` absolute value 
+ 
+ - `min(x)` minimum value
+
+ - `max(x)` maximum value
+
+ - `sqrt(x)` square root 
+
+ - `x^y` or `x**y` exponentiation
+ 
+ - `log(x)` natural logarithm (base *e*)
+
+ - `log10(x)` decimal logarithm
+
+---
+# *R* as a Calculator: Statisticals
+
+ - `length(x)`
+
+ - `sum(x)`
+
+ - `range(x)`
+
+ - `mode(x)` 
+
+ - `median(x)`
+
+---
+# *R* as a Calculator: Statisticals
+
+ - `quantile(x)` 
+
+ - `mean(x)` arithmetic mean
+
+ - `exp(mean(log(x)))` geometric mean
+
+ - `sd(x)` standard deviation
+
+ - `var(x)` variance
+
+ - `fivenum(x)` Tukey's five number summary 
+
+ - `summary(x)` 
+
+---
+# *R* as a Calculator: Date and Time
+
+ - `diff(x)` returns a vector of length(x) - 1 containing the differences between consecutive elements of x
+ 
+--
+ 
+ - `difftime(x)`
+ 
+--
+ 
+ - `diffinv(x)`
+ 
+--
+ 
+ - `lag(x)`
+
+
+---
+# *R* Special Operators
+
+ - `:` to create sequences
+ 
+--
+ 
+ - `[` and `[[` to index data structures
+ 
+--
+ 
+ - `{` to group multiple commands in a single block
+ 
+--
+ 
+ - `$` and `@` to select elements or slots in data structures
+ 
+--
+ 
+ - `%in%` to look for elements 
+ 
+---
+# *R* Special Operators
+
+ - `.` often represents *all the remaining features*
+ 
+ - `~` to specify relations in a model
+ 
+ - `::` and `:::` to reference external libraries
+
+---
+# *R* Special Values
+
+  - `NA` missing value 
+  
+  - `NULL` object not ready or not present
+   
+  - `NaN` invalid mathematical expression
+
+  - `Inf` Infinity
+
+---
+# *R* Special Values
+
+To test for the above:
+
+  - `is.na(x)`
+  
+  - `is.null(x)`
+  
+  - `is.nan(x)`
+  
+  - `is.infinite(x)`
+
+---
+# Dealing with *R* Missing Values
+
+It should be noted that the *basic* `NA` is of type *logical*. 
+
+--
+
+But there are also other *NA* types corresponding to the other data types:
+
+ - `NA_character_`
+
+ - `NA_integer_`
+
+ - `NA_real_`
+
+ - `NA_complex_`
+  
+--
+
+There are no test functions for these specific `NA` types
+
+---
+# Dealing with *R* Missing Values
+
+There are 
+
+ - `complete.cases()`
+ 
+ - `anyNA()`
+
+ - `na.omit()`
+
+
+---
+# File System
+
+ - `file.choose()`
+
+ - `file.exists()` 
+  
+ - `file.info()`
+  
+ - `file.size()`
+  
+ - `file.path(x, y, z, ...)` returns `x/y/z/...`
+
+ - `file.rename()`
+
+ - `file.copy()`
+
+ - `file.remove()`
+
+
+---
+# Escape Sequences
+
+The backslash character `\` often invokes an alternative interpretation on the subsequent character
+
+--
+
+The main escape sequences are the following:
+
+ - `\n` newline
+ - `\r` carriage return
+ - `\t` tab
+ - `\b` backspace
+ - `\\` backslash
+ - `\'` single quote
+ - `\"` double quote
+
+---
+# *R* Reserved Words
+
+ - `TRUE`, `FALSE`
+
+ - `NA`, `NA_character_`, `NA_integer_`, `NA_real_`, `NA_complex_`
+
+ - `NaN`, `NULL`, `Inf`
+  
+ - `if`, `else`
+  
+ - `repeat`, `while`
+ 
+ - `for`, `in`, `next`, `break`
+
+ - `function`
+ 
+ - `...`, `..1`, `..2`, `...`
+
+---
+# Data I/O: Text Files with *R* Base
+
+ `read.table` is the generic call for tabular data
+
+ - `sep` allows a field separator other than the default white space
+ 
+--
+
+ - `header` insert `TRUE` to specify that the first line of the file contains variable names
+ 
+--
+
+ - `as.is` allows control over character to factor conversion
+ 
+---
+# Data I/O: Text Files with *R* Base
+
+Specialized versions of `read.table`:
+
+ - `read.csv` for comma-separated values with `header = TRUE`, `sep = ','`, `dec = '.'`
+
+ - `read.csv2` for comma-separated values with `header = TRUE`, `sep = ','`, `dec = ','`
+
+ - `read.delim` for tab-separated values with `header = TRUE`, `sep = '\t'`, `dec = '.'`
+
+ - `read.delim2` for tab-separated values with `header = TRUE`, `sep = '\t'`, `dec = ','`
+
+
+---
+# Data I/O: Text Files with *R* Base
+
+ `read.fwf` for fixed width formatted values
+
+---
+# Data I/O: Binary Files with *R* Base
+
+Single *R* object:
+
+ - `readRDS(filename)` for data input
+ 
+ - `saveRDS(object, filename)` for data output
+
+--
+
+Multiple *R* objects:
+
+ - `readRDS(filename)` for data input
+ 
+ - `saveRDS(object, filename)` for data output
+
+---
+# Data I/O: preloaded datasets
+
+There are lots of example data sets available within *R* itself, and along with most packages
+
+--
+
+ - `data()` returns a list of all the datasets contained in all the packages currently loaded
+ 
+--
+
+ - `data(dtsname)` load the dataset called *dtsname*
+ 
+--
+
+ - `data(package = .packages(all.available = TRUE))` list all the data sets in all the available packages stored on CRAN
+
+
+---
+# Data I/O: download files from Internet
+
+
+---
+# Data I/O: Text Files with *readr*
+
+[readr](https://github.com/tidyverse/readr) is the tidyverse substitute for the *R* Base Data I/O functions
+
+ - `readr` for text files, works similar to *R* base functions but much faster and more flexible
+ 
+---
+# Data I/O: Text Files with *data.table*
+
+[data.table](https://github.com/Rdatatable/data.table) is a generic package for fast data I/O and data wrangling
+ 
+--
+ 
+ - `fread` for data input
+ 
+--
+
+ - `fwrite` for output 
+
+
+---
+# Data I/O: Binary Files with *fst*
+
+[fst](https://github.com/fstpackage/fst) is a package for multi-threaded data I/O, also allowing for compression and random access
+
+--
+ 
+ - `read_fst(path, columns = NULL, from = 1, to = NULL)` for data input
+ 
+--
+
+ - `write_fst(x, fname, compress = 50)` for data output 
+
+
+
+---
+# Data I/O: *Excel* Files with *readxl*
+
+ - `excel_sheets()` to list the sheets in the file
+
+--
+ 
+ - `read_xlsx(filename, sheet, range)`
+ 
+
+---
+# Data I/O: *JSON* Files with *jsonlite*
+
+Convert *key*:*value* files in tabular data, and viceversa
+
+
+ - ``
+
+
+
+---
+# Resources
+
+--
+
+ - [Cheat Sheet]()
+ 
+--
+
+ - [Reference]()
+ 
+--
+
+ - [RStudio Tutorials]()
+
+--
+
+ - [Datacamp Skill Track]()
+
+
+---
+# Thank You!
+
+ - [`r icon::fa("twitter")` @datamaps](https://twitter.com/datamaps)
+
+ - [`r icon::fa("github")` lvalnegri](https://github.com/lvalnegri)
+ 
+ - [`r icon::fa("linkedin")` Luca Valnegri](https://www.linkedin.com/in/lucavalnegri)
