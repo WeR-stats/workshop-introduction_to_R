@@ -42,10 +42,6 @@ z <- y[1:length(x) -1]
 z
 x + z
 
-# explain what packages are: additional functionalities
-# install and load a few packages: run the file 'install_pkgs.R'
-source('install_pkgs.R')
-
 # explain what a function is, and its arguments, by positions and by name, complete or short form, optional and its default value
 # show how RStudio help in writing down a function call
 sqrt(x = 81)

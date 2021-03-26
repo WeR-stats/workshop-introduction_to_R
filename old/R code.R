@@ -47,6 +47,17 @@ x - 2
 y <- x
 y
 
+# 
+attributes(x)
+structure(x)
+attr(x)
+
+
+# you can also add metadata to objects, especially useful for dataframes and model outcomes
+# the content of comments can be of any types
+comment(x) <- 'the number of '
+comment(y) <- c()
+
 #### + Environment, Workspace -------------------------------------------------------------------------------------------------------------
 
 # 

@@ -421,26 +421,74 @@ In particular, the Tidyverse was designed to address the top three common issues
 
 
 ---
-# Objects
+# Variables
 
- - Objects can be assigned values using either an equal sign `=` or the special `<-` operator
+ - Any object can be stored in memory, and identified with a name to be recalled later. 
+ 
+--
+
+ - The stored object is called *variable* and the operation is called *assignment*
+ 
+--
+
+ - In any assignment statements, *R* actually copy the object, it is not passed by reference.
+ 
+--
+
+ - If you don’t assign the result of an expression to an object, *R* will display the results, and store it in a temporary object called `.Last.value`
+
+---
+# Variable Assignment
+
+ - To assign variables to objects we use either an equal sign `=` or the special `<-` operator
+ 
+--
+
+ - A shortcut for `<-` is `Alt -`
  
 --
 
  - In automation, it's more convenient to use the function `assign('varname', value)`
- 
+
 --
- 
- - In any assignment statements, *R* actually copy the object, it is not passed by reference.
- 
---
- 
- - If you don’t assign the result of an expression to an object, *R* will display the results, but also store it in the `.Last.value` object
+
+ - If the variable already exists, it will be overwritten without any warning
  
 --
 
- - The `str()` function shows the structure of an object
+ - Performing calculations on a variable won't change the value it has stored
  
+--
+
+  - The `str(x)` function shows a compact display of the *structure* of the object `x`, its *class* (type) and contents 
+ 
+---
+# Variable Names
+
+ - Variable names should not contain spaces, or begin with a number or dot followed by a number
+ 
+--
+ 
+ - If you really can't do without, enclose the name with *ticks* ```
+
+--
+
+-
+
+--
+
+
+--
+
+ - Variable names should help describe the information you are saving, aim for names that are descriptive even if .
+
+-- 
+
+ - Even if admitted, try not to use dots when naming variables, use instead underline to separate words (dots have usually a special meaning in programming)
+ 
+--
+
+
 ---
 # Data Types
 
@@ -575,7 +623,7 @@ The above functions all returns the index or indices of the elements satisfying 
 ---
 # Data Structures: List
 
- - a *list* provides a very general way to hold a collection of, possibly named, arbitrary R objects. 
+ - a *list* provides a very general way to hold a collection of, possibly named, arbitrary R objects.
 
 --
 
@@ -586,9 +634,24 @@ The above functions all returns the index or indices of the elements satisfying 
  - if the items of the list are named, it's possible to use the more common `$` notation
 
 ---
+# Data Structures:
+
+ - `head(x, n = 6)` returns the first *n* elements of the object *x*
+ 
+--
+
+ - `tail(x, n = 6)` the opposite of head, returns the last *n* elements of *x*
+ 
+--
+
+ - 
+
+
+
+---
 # Factors
 
- - a convenient representation for columns of a dataframe that represents *categorical* variable, with a number of finite labels with no direct numrical meaning
+ - a convenient representation for columns of a dataframe that represents *categorical* variable, with a number of finite labels having no direct numerical meaning
 
 --
 
